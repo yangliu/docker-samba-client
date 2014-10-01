@@ -27,8 +27,8 @@ for mnt in $mounts; do
     # test if we need credentials
     usrpwd=$(echo $mnt | awk -F '@' '{print $1}')
     if [ "$usrpwd" != "$mnt" ]; then
-      # echo "username=$(echo $usrpwd | awk -F ':' '{print $1}')" > "${credentials_file_base}${num}"
-      # echo "password=$(echo $usrpwd | awk -F ':' '{print $2}')" >> "${credentials_file_base}${num}"
+      echo "username=$(echo $usrpwd | awk -F ':' '{print $1}')" > "${credentials_file_base}${num}"
+      echo "password=$(echo $usrpwd | awk -F ':' '{print $2}')" >> "${credentials_file_base}${num}"
       credentials=",credentials=${credentials_file_base}${num}"
       mnt=$(echo $mnt | awk -F '@' '{print $2}')
     else
@@ -48,7 +48,7 @@ for mnt in $mounts; do
     mkdir -p $target
 
     echo "[DEBUG] Try to mount samba share: mount -t cifs -o file_mode=0644,dir_mode=0775${credentials}${domain} //${src} ${target}"
-    # mount -t cifs -o file_mode=0644,dir_mode=0775${credentials}${domain} //${src} ${target}
+    mount -t cifs -o file_mode=0644,dir_mode=0775${credentials}${domain} //${src} ${target}
 
     num=$((num+1))
   fi
