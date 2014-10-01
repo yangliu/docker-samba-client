@@ -1,4 +1,4 @@
 docker-samba-client
 ===================
 
-Samba client for Docker
+A Samba client for Docker
