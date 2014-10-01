@@ -9,4 +9,5 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -qq && apt-get install -yqq cifs-utils inotify-tools
 
 ADD smb-client.sh /usr/local/bin/smb-client
+VOLUME ["/mnt/samba"]
 ENTRYPOINT ["/usr/local/bin/smb-client"]
